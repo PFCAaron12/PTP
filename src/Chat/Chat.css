@@ -1,0 +1,90 @@
+* {
+    box-sizing: border-box;
+  }
+  :root {
+    --color-1: #242526;
+    --color-2: white;
+    --color-3: #0084ff;
+    --color-4: grey;
+    --color-5: #eb4034;
+    --color-6: #333;
+  }
+
+  .home_container {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    overflow: hidden;
+    height: calc(100vh - 70px);
+    width: 100vw;
+  }
+
+  .users_container {
+    margin-top: 10px;
+    border-right: 2px solid var(--color-6);
+    overflow-y: auto;
+  }
+
+  .messages_container {
+    position: relative;
+    width: 100%;
+  }
+  .messages_user {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 2px solid var(--color-6);
+  }
+
+  .messages {
+    height: calc(100vh - 200px);
+    overflow-y: auto;
+    border-bottom: 1px solid var(--color-6);
+  }
+  
+  .no_conv {
+    font-size: 20px;
+    color: var(--color-4);
+    text-align: center;
+  }
+
+  @media screen and (max-width: 767px) {
+    .home_container {
+      grid-template-columns: 2fr 3fr;
+    }
+    .message_form {
+      left: 3%;
+      right: 0;
+      bottom: 5px;
+    }
+    .message_wrapper p {
+      max-width: 75%;
+    }
+  }
+
+  @media screen and (max-width: 576px) {
+    .home_container {
+      grid-template-columns: 1fr 5fr;
+    }
+    .user_wrapper {
+      display: none;
+    }
+    .sm_container {
+      padding: 10px 0px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .sm_screen {
+      display: inline-block;
+    }
+    .message_form input {
+      width: 50vw;
+      margin: 0px 10px;
+    }
+    .message_form .btn {
+      margin: 0px;
+    }
+  
+    .message_wrapper p {
+      max-width: 100%;
+    }
+  }
