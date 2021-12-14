@@ -101,7 +101,7 @@ export function UserData ()  {
 				<Username />
 				<Input type='text' placeholder={users.displayName}/>
 			    </Button>
-				<Avatar id="myimg" src={users.image} alt='avatar'sx={{ width: 180, height: 180 }}/>
+				<Avatar id="myimg" src={users.image} alt='avatar'sx={{ width: 180, height: 180, left: 100, top: 4 }}/>
 				<Button>
 				<Location />
 				<Input type='text' placeholder={users.location}/>

@@ -6,11 +6,12 @@ import { IoClose } from 'react-icons/io5';
 import { storage } from "../Firebase";
 import HeadphonesMic from '../images/HeadphonesMic.png';
 import { getAuth } from '@firebase/auth';
+import UploadBeats from './UploadBeats'
 
 const Mars = styled.div`
-  top: 0;
-  left: 0;
-  width: 100vw;
+  top: 0px;
+  left: 327px;
+  width: 40vw;
   height: 100vh;
   display: flex;
   position: fixed;
@@ -20,7 +21,7 @@ const Mars = styled.div`
 `;
 const ModalMars = styled.div`
   width: 77%;
-  height: 77%;
+  height: 95%;
   color: #000;
   display: flex;
   background: #fff;
@@ -127,7 +128,7 @@ const Remove = styled(FaTrashAlt)`
   margin-right: 4px;
 `;
 
-export const ModalUpload = ({isOpen, setIsOpen}) => {
+export const UploadModal = ({isOpen, setIsOpen}) => {
   const [onEnter, setOnEnter] = useState(false);
   const [progress, setProgress] = useState(0);
   const [files, setFiles] = useState([]);
@@ -139,56 +140,7 @@ export const ModalUpload = ({isOpen, setIsOpen}) => {
     setProgress(0);
     setFiles([]);
   }
-  const onDragEnter = (e) => {
-    e.stopPropagation();
-    e.preventDefault();
-    setOnEnter(true);
-  };
-  const onDragExit = (e) => {
-    e.stopPropagation();
-    e.preventDefault();
-    setOnEnter(false);
-  };
-  const onDrop = (e) => {
-    e.stopPropagation();
-    setOnEnter(false);
-  };
-  const handleDrop = (e) => {
-    setOnEnter(false);
-    for (let i = 0; i < e.target.files.length; i++) {
-      const newFile = e.target.files[i];
-      setFiles((prevState) => [...prevState, newFile]);
-    }
-  };
-  const handleUpload = () => {
-    const auth = getAuth()
-    const user = auth.currentUser.uid
-    const uploadFiles = [];
-    files.forEach((file) => {
-      const audioRef = ref(storage, `Beats/${user}/${file.name}`);
-      const uploadTask = uploadBytesResumable(audioRef, file);
-      uploadFiles.push(uploadTask);
-      uploadTask.on('state_changed',(snapshot) => {
-          const prog = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-          setProgress(prog);
-        },
-        (error) => console.log(error),() => {
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          });
-        }
-      );
-    });
-
-  };
-
- 
-
-
-  const handleDelete = (file) => {
-    const updatedFile = [...files];
-    updatedFile.splice(files.indexOf(file));
-    setFiles(updatedFile);
-  }
+  
   const close = (e) => {
     if(marsRef.current === e.target) {
         setIsOpen(false);
@@ -209,54 +161,8 @@ export const ModalUpload = ({isOpen, setIsOpen}) => {
       {isOpen ? (
         <Mars onclick={close} ref={marsRef}>
           <ModalMars isOpen={isOpen} setIsOpen={setIsOpen}>
-            <Image src={HeadphonesMic} />
-            <Col>
-              <Loadprog>
-                Uploading...{progress}%<
-                progress value={progress} max="100" />
-              </Loadprog>
-              <Dropzone
-                ref={marsRef}
-                onDrop={onDrop}
-                onEnter={onEnter}
-                onDragExit={onDragExit}
-                onDragEnter={onDragEnter}
-              >
-                <Input 
-                  multiple 
-                  type='file' 
-                  accept='.wav'
-                  onChange={handleDrop}
-                />
-                <FaCloudUpload />
-                <Text>
-                  Drag & Drop WAV files here or click to browse
-                </Text>
-              </Dropzone>
-              <Submit onClick={handleUpload}>Upload</Submit>
-            </Col>
-            <FilePreview>
-              <Title>Files ready for upload</Title>
-            {
-              files.length > 0 ? (
-                <FilePreview>
-                  {
-                    files.map((item, index) => (
-                      <PreviewItem key={index}>
-                        <WavFileIcon />
-                        <ItemInfo>
-                          <Info>{item.name}</Info>
-                          <Info>{item.size}</Info>
-                        </ItemInfo>
-                        <Remove onClick={() => handleDelete(item)} />
-                      </PreviewItem>
-                    ))
-                  }
-                </FilePreview>
-              ) : null
-            }
-            </FilePreview>
-            <CloseButton onClick={reset} />
+            <UploadBeats />
+            <CloseButton onClick={() => setIsOpen(prev => !prev)} />
           </ModalMars>
         </Mars>
       ) : null}

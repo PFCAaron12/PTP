@@ -10,10 +10,10 @@ function Dashboard() {
             <LeftSideBar/>
             </div>
             <div>
-                <MiddleOfDash />
+               
             </div>
             <div>
-                <UserData />
+               
             </div>
         </div>
     )
