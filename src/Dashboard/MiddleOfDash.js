@@ -1,16 +1,16 @@
-import { getStorage, ref, listAll, getDownloadURL } from "firebase/storage";
-import { auth, storageRef } from '../Firebase'
+import { getStorage, ref, listAll } from "firebase/storage";
+import { auth } from '../Firebase'
 import styled from 'styled-components';
-
+import ExclusiveUpload  from '../Beats/ExclusiveUpload';
+import NonExclusiveUpload from '../Beats/NonExclusiveUpload';
 
 const Mid = styled.div`
 position: absolute;
-top: 200px;
-left: 300px;
+top: 100px;
+left: 450px;
   color: white;
   width: 500px;
   height: 300px;
-
 `;
 
 
@@ -42,6 +42,28 @@ const listRef = ref(storage, `Beats/${user}/`);
 
     return (
         <Mid id="div">
+          <div style={{
+            textAlign: 'center',
+            alignItems: "center"}}>
+          <h3>Upload Your Instrumental</h3>
+            <p>Hoover over each option for more info before choosing one.</p>
+            </div>
+            <div
+             style={{
+              position: "absolute",
+              top: 88,
+              right: 280,
+            }}>
+          <ExclusiveUpload/>
+          </div>
+          <div
+          style={{
+            position: "absolute",
+            top: 88,
+            right: 80,
+          }}>
+          <NonExclusiveUpload />
+          </div>
         </Mid>
     )
 }

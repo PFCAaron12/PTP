@@ -3,14 +3,12 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import { FaHome, FaShoppingCart, FaFileUpload, FaHeadphonesAlt } from 'react-icons/fa';
-import { ModalUpload } from './ModalUpload';
 import { deviceSize } from './DeviceSize';
 import { Dropdown } from './Dropdown';
 import { Marginer } from './Marginer';
 import { Search } from './NavSearch';
 import { Button } from './Reusable';
 import { Logo } from './Logo';
-import  {UploadModal}  from '../Beats/UploadModal';
 
 const NavbarMars = styled.div`
   width: 100%;
@@ -105,7 +103,6 @@ export function Navbar(props) {
         {!isMobile && <LinkMars><FaShoppingCart size='22px' /></LinkMars>}
         {!isMobile && <Marginer direction='horizontal' margin={30} />}
         {!isMobile && <Seperator />} 
-        <UploadModal isOpen={isOpen} setIsOpen={setIsOpen}/>
         <Marginer direction='horizontal' margin={30} />
         <LinkMars to='/Signup'>
           <Button size={12} to='/Signup'>Sign Up</Button>

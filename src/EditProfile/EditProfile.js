@@ -119,10 +119,8 @@ function EditProfile() {
      alert("Image not uploaded.")
     }, 
     () => {
-      getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-        console.log(downloadURL)
-        const image = document.getElementById('myimg');
-        image.setAttribute('src', downloadURL); 
+      getDownloadURL(uploadTask.snapshot.ref).then((image) => {
+        setImage(image)
       });
     }
   ); 
@@ -148,7 +146,7 @@ function EditProfile() {
       	<label for="file-input"> 
 			<Avatar id="myimg" src={image} alt='avatar' sx={{ width: 180, height: 180 }}/>
 		 </label> 
-			<InputI type='file' accept='image/*' onChange={onSelectFile}/>
+			<InputI type='file' id="file-input" accept='image/*' onChange={onSelectFile}/>
 		</Mars>
             </div>
      <div className="main">
