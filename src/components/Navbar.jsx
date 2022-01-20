@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
@@ -83,11 +82,6 @@ const GenreList = [
 
 export function Navbar(props) {
   const isMobile = useMediaQuery({ maxWidth: deviceSize.mobile });
-  const [isOpen, setIsOpen] = useState(false);
-  const open = () => {
-    setIsOpen(prev => !prev);
-  }
-
 
   return (
     <NavbarMars>
@@ -98,7 +92,7 @@ export function Navbar(props) {
         {!isMobile && <Marginer direction='horizontal' margin={35} />}
         {!isMobile && <Icon>{GenreList.map((genre, index) => { return <Dropdown genre={genre} key={index} /> })} </Icon>}
         {!isMobile && <Marginer direction='horizontal' margin={35} />}
-        {!isMobile && <Icon><FaFileUpload size='22px' onClick={open}/></Icon>}
+        {!isMobile && <Icon><FaFileUpload size='22px' /></Icon>}
         {!isMobile && <Marginer direction='horizontal' margin={20} />}
         {!isMobile && <LinkMars><FaShoppingCart size='22px' /></LinkMars>}
         {!isMobile && <Marginer direction='horizontal' margin={30} />}

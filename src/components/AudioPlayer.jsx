@@ -1,10 +1,21 @@
 import styled from 'styled-components';
 import React, { useContext } from 'react';
 import { FcStart, FcLike } from 'react-icons/fc';
-import { AudioState } from './AudioState';
+import { AudioState } from '../Beats/HipHop/AudioState';
 import { PlayerContext } from './Context';
-import { AudioControls } from './AudioControls';
+import { AudioControls } from '../Beats/HipHop/AudioControls';
 import UserProfile from '../images/UserProfile.png';
+
+
+
+const Mid = styled.div`
+position: absolute;
+top: 100px;
+left: 450px;
+  color: white;
+  width: 500px;
+  height: 300px;
+`;
 
 const Mars = styled.div`
   height: 100vh;
@@ -121,27 +132,15 @@ export function Playlist(props){
     <Mars>
       <Plist>
         <List>
-          {audiolist.map((audio, i) =>(
-            <ListItems 
-              className={'ListItems' + (currentAudio === i ? 'selected' : '')}
-              key={i}
-              onClick={() => {
-                setCurrent(i)
-              }}
-            >
               <PlayIcon />
               <AudioMeta>
-                <Title>{audio.title}</Title>
-                <Artist>{audio.artist}</Artist>
+                <Title></Title>
+                <Artist></Artist>
               </AudioMeta>
-              <Button>
-                <FcLike />
-              </Button>
-            </ListItems>
-          ))}
         </List>
       </Plist>
     </Mars>
+    
   );
 }
 

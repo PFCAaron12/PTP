@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { AudioPlayer } from '../components/AudioPlayer';
 import { deviceSize } from '../components/DeviceSize';
 import { PageMars } from '../components/PageMars';
 import { Footer } from '../components/PageFooter';
@@ -21,7 +20,7 @@ export default function Pop(props) {
   return (
     <PageMars>
         <Mars>
-         <AudioPlayer />
+          
         </Mars>
         <Footer />
     </PageMars>

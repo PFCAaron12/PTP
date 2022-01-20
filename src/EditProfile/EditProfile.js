@@ -15,7 +15,6 @@ const Mars = styled.div`
 	align-items: center;
 	flex-direction: column;
 	justify-content: center;
-  z-index: 1000;
   left: 45px;
   top: 1px;
 `;
@@ -97,7 +96,7 @@ function EditProfile() {
         const objectUrl = URL.createObjectURL(selectedFile)
         setImage(objectUrl)
         return () => URL.revokeObjectURL(objectUrl)
-    }, [selectedFile])
+    }, [selectedFile]) 
 
        async function uploadToDB() {
         const storage = getStorage();

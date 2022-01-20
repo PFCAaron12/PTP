@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { AudioPlayer } from '../components/AudioPlayer';
 import { PageMars, InnerPage } from '../components/PageMars';
 import { deviceSize } from '../components/DeviceSize';
 import { Footer } from '../components/PageFooter';
+
+
 
 const Mars = styled.div`
   width: 100%;
@@ -21,7 +22,7 @@ export default function HipHop(props) {
     <PageMars>
       <InnerPage>
         <Mars>
-          <AudioPlayer />
+          
         </Mars>
       </InnerPage>
       <Footer />

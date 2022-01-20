@@ -1,6 +1,5 @@
 import { useRef } from 'react';
 import { useSpring, animated } from 'react-spring';
-import { MdClose } from 'react-icons/md';
 import styled from 'styled-components';
 import EditProfile from './EditProfile'
 
@@ -13,6 +12,7 @@ const Background = styled.div`
   top: -33%;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
 `;
 
 const ModalWrapper = styled.div`
@@ -24,7 +24,6 @@ const ModalWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   position: relative;
-  z-index: 10;
   border-radius: 10px;
 `;
 
@@ -47,17 +46,6 @@ const ModalContent = styled.div`
   }
 `;
 
-const CloseModalButton = styled(MdClose)`
-  cursor: pointer;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 32px;
-  height: 32px;
-  padding: 0;
-  z-index: 10;
-  `;
-
   export const ModalProfile = ({ showModal, setShowModal }) => {
     const modalRef = useRef();
   
@@ -68,26 +56,16 @@ const CloseModalButton = styled(MdClose)`
       opacity: showModal ? 1 : 0,
       transform: showModal ? `translateY(0%)` : `translateY(-100%)`
     });
-  
-    const closeModal = e => {
-      if (modalRef.current === e.target) {
-        setShowModal(false);
-      }
-    };
-  
+
     return (
       <>
         {showModal ? (
-          <Background onClick={closeModal} ref={modalRef}>
+          <Background onClick={() => setShowModal(prev => !prev)} ref={modalRef} >
             <animated.div style={animation}>
               <ModalWrapper showModal={showModal}>
                 <ModalContent>
                   <EditProfile />  
                 </ModalContent>
-                <CloseModalButton
-                  aria-label='Close modal'
-                  onClick={() => setShowModal(prev => !prev)}
-                />
               </ModalWrapper>
             </animated.div>
           </Background>
